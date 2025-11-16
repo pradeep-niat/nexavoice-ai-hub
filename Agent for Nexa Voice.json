@@ -1,0 +1,85 @@
+{
+  "name": "Agent for Nexa Voice",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1C5ivYn9p7CITd-UTJ6fdUcI_sLpqYbNvhjltODgy4cw",
+          "mode": "list",
+          "cachedResultName": "Untitled spreadsheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1C5ivYn9p7CITd-UTJ6fdUcI_sLpqYbNvhjltODgy4cw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "agents",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1C5ivYn9p7CITd-UTJ6fdUcI_sLpqYbNvhjltODgy4cw/edit#gid=0"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "7afd0ecb-c6f1-4189-a723-695f89c7dbb2",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "0jCS0rf0WZFo02NO",
+          "name": "Google Sheets Trigger account 753"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://nexa-ai-dash.lovable.app",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "12b398a0-3b89-4d57-babd-58b3be5eb4eb",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f0dd3944-921a-47cc-b922-735ef85e41b3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "969257b09ad2942bbaff2e2288304f4969030574d109cdeca05bf11f630884df"
+  },
+  "id": "JH75BNwCcHaQL1Zt",
+  "tags": []
+}
