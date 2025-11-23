@@ -67,7 +67,7 @@ const Contacts = () => {
 
       // Send to webhook
       try {
-        await fetch('https://workflow.ccbp.in/webhook-test/vapi-contact', {
+        await fetch('https://workflow.ccbp.in/webhook-test/contacts', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
