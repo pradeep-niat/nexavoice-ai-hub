@@ -29,6 +29,7 @@ const Agents = () => {
 
     setIsLoading(true);
     try {
+      // Save to database
       const { error } = await supabase.from('agents').insert({
         user_id: user.id,
         name: formData.name,
@@ -38,6 +39,27 @@ const Agents = () => {
       });
 
       if (error) throw error;
+
+      // Send to webhook
+      try {
+        await fetch('https://workflow.ccbp.in/webhook/create-assistant', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: user.id,
+            name: formData.name,
+            greeting_message: formData.greeting,
+            prompt: formData.prompt,
+            language: formData.language,
+            timestamp: new Date().toISOString(),
+          }),
+        });
+      } catch (webhookError) {
+        console.error('Webhook error:', webhookError);
+        // Don't fail the whole operation if webhook fails
+      }
 
       toast({
         title: 'Agent created!',
