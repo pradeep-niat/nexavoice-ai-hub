@@ -42,7 +42,7 @@ const Agents = () => {
 
       // Send to webhook
       try {
-        await fetch('https://workflow.ccbp.in/webhook/create-assistant', {
+        await fetch('https://workflow.ccbp.in/webhook-test/create-assistant', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
