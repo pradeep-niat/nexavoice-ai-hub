@@ -65,6 +65,24 @@ const Contacts = () => {
 
       if (error) throw error;
 
+      // Send to webhook
+      try {
+        await fetch('https://workflow.ccbp.in/webhook-test/vapi-contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: user.id,
+            name: formData.name,
+            phone: formData.phone,
+            timestamp: new Date().toISOString(),
+          }),
+        });
+      } catch (webhookError) {
+        console.error('Webhook error:', webhookError);
+      }
+
       toast({
         title: 'Contact added!',
         description: 'Contact has been successfully added.',
