@@ -65,6 +65,25 @@ const Campaigns = () => {
 
       if (error) throw error;
 
+      // Send to webhook
+      try {
+        await fetch('https://workflow.ccbp.in/webhook-test/campaign', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: user.id,
+            agent_id: formData.agentId,
+            name: formData.name,
+            status: 'pending',
+            timestamp: new Date().toISOString(),
+          }),
+        });
+      } catch (webhookError) {
+        console.error('Webhook error:', webhookError);
+      }
+
       toast({
         title: 'Campaign created!',
         description: 'Your campaign has been successfully created and is ready to launch.',
